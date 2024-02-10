@@ -115,6 +115,7 @@
 			saveBtn.TabIndex = 7;
 			saveBtn.Text = "저장";
 			saveBtn.UseVisualStyleBackColor = true;
+			saveBtn.Click += saveBtn_Click;
 			// 
 			// updateBtn
 			// 
