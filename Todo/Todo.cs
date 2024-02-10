@@ -18,11 +18,13 @@ namespace Todo
 			InitializeComponent();
 		}
 
+		// 폼 로드 시 동작
 		private void Todo_Load(object sender, EventArgs e)
 		{
-
+			todoDgv.DataSource = TodoQuery.Instance.SelectAllQuery();
 		}
 
+		// 저장 버튼 클릭 이벤트
 		private void saveBtn_Click(object sender, EventArgs e)
 		{
 			string content = contentTb.Text;
