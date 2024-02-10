@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Todo.Contexts;
+using Todo.Dialogs;
 using Todo.Models;
 
 namespace Todo.DBQuery
@@ -49,6 +50,20 @@ namespace Todo.DBQuery
 			{
 				List<TodoInfo> selectAllQuery = db.Todos.ToList();
 				return selectAllQuery;
+			}
+		}
+
+		public void UpdateQuery(UpdateDialog updatedialog)
+		{
+			using (TodoContext db = new TodoContext())
+			{
+				TodoInfo todo = db.Todos.SingleOrDefault(p => p.Id == updatedialog.Id);
+
+				todo.Content = updatedialog.Content;
+				todo.StartDate = updatedialog.StartDate;
+				todo.EndDate = updatedialog.EndDate;
+
+				db.SaveChanges();
 			}
 		}
 
