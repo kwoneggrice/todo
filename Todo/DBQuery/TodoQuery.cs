@@ -52,5 +52,21 @@ namespace Todo.DBQuery
 			}
 		}
 
+		public void DeleteQuery(int id)
+		{
+			using (TodoContext db = new TodoContext())
+			{
+				TodoInfo query = db.Todos.SingleOrDefault(p => p.Id == id);
+
+				if (query == null)
+				{
+					return;
+				}
+
+				db.Todos.Remove(query);
+				db.SaveChanges();
+			}
+		}
+
 	}
 }
