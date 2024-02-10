@@ -43,5 +43,14 @@ namespace Todo.DBQuery
 			}
 		}
 
+		public List<TodoInfo> SelectAllQuery()
+		{
+			using (TodoContext db = new TodoContext())
+			{
+				List<TodoInfo> selectAllQuery = db.Todos.ToList();
+				return selectAllQuery;
+			}
+		}
+
 	}
 }
