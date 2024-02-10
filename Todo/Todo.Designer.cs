@@ -29,6 +29,10 @@
 		private void InitializeComponent()
 		{
 			todoDgv = new DataGridView();
+			Id = new DataGridViewTextBoxColumn();
+			Content = new DataGridViewTextBoxColumn();
+			StartDate = new DataGridViewTextBoxColumn();
+			EndDate = new DataGridViewTextBoxColumn();
 			label1 = new Label();
 			label2 = new Label();
 			label3 = new Label();
@@ -37,23 +41,48 @@
 			contentTb = new TextBox();
 			saveBtn = new Button();
 			updateBtn = new Button();
-			selectBtn = new Button();
 			deleteBtn = new Button();
-			Id = new DataGridViewTextBoxColumn();
-			Content = new DataGridViewTextBoxColumn();
-			StartDate = new DataGridViewTextBoxColumn();
-			EndDate = new DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)todoDgv).BeginInit();
 			SuspendLayout();
 			// 
 			// todoDgv
 			// 
+			todoDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 			todoDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			todoDgv.Columns.AddRange(new DataGridViewColumn[] { Id, Content, StartDate, EndDate });
 			todoDgv.Location = new Point(12, 12);
 			todoDgv.Name = "todoDgv";
-			todoDgv.Size = new Size(419, 200);
+			todoDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+			todoDgv.Size = new Size(414, 200);
 			todoDgv.TabIndex = 0;
+			// 
+			// Id
+			// 
+			Id.DataPropertyName = "Id";
+			Id.HeaderText = "Id";
+			Id.Name = "Id";
+			Id.Width = 42;
+			// 
+			// Content
+			// 
+			Content.DataPropertyName = "Content";
+			Content.HeaderText = "Content";
+			Content.Name = "Content";
+			Content.Width = 75;
+			// 
+			// StartDate
+			// 
+			StartDate.DataPropertyName = "StartDate";
+			StartDate.HeaderText = "StartDate";
+			StartDate.Name = "StartDate";
+			StartDate.Width = 82;
+			// 
+			// EndDate
+			// 
+			EndDate.DataPropertyName = "EndDate";
+			EndDate.HeaderText = "EndDate";
+			EndDate.Name = "EndDate";
+			EndDate.Width = 77;
 			// 
 			// label1
 			// 
@@ -69,7 +98,7 @@
 			// 
 			label2.AutoSize = true;
 			label2.Font = new Font("맑은 고딕", 12F);
-			label2.Location = new Point(231, 215);
+			label2.Location = new Point(226, 215);
 			label2.Name = "label2";
 			label2.Size = new Size(58, 21);
 			label2.TabIndex = 2;
@@ -94,7 +123,7 @@
 			// 
 			// endDateDtp
 			// 
-			endDateDtp.Location = new Point(231, 239);
+			endDateDtp.Location = new Point(226, 239);
 			endDateDtp.Name = "endDateDtp";
 			endDateDtp.Size = new Size(200, 23);
 			endDateDtp.TabIndex = 5;
@@ -104,12 +133,12 @@
 			contentTb.Location = new Point(12, 308);
 			contentTb.Multiline = true;
 			contentTb.Name = "contentTb";
-			contentTb.Size = new Size(419, 135);
+			contentTb.Size = new Size(414, 135);
 			contentTb.TabIndex = 6;
 			// 
 			// saveBtn
 			// 
-			saveBtn.Location = new Point(113, 512);
+			saveBtn.Location = new Point(189, 512);
 			saveBtn.Name = "saveBtn";
 			saveBtn.Size = new Size(75, 23);
 			saveBtn.TabIndex = 7;
@@ -119,62 +148,30 @@
 			// 
 			// updateBtn
 			// 
-			updateBtn.Location = new Point(194, 512);
+			updateBtn.Location = new Point(270, 512);
 			updateBtn.Name = "updateBtn";
 			updateBtn.Size = new Size(75, 23);
 			updateBtn.TabIndex = 8;
 			updateBtn.Text = "수정";
 			updateBtn.UseVisualStyleBackColor = true;
-			// 
-			// selectBtn
-			// 
-			selectBtn.Location = new Point(275, 512);
-			selectBtn.Name = "selectBtn";
-			selectBtn.Size = new Size(75, 23);
-			selectBtn.TabIndex = 9;
-			selectBtn.Text = "조회";
-			selectBtn.UseVisualStyleBackColor = true;
+			updateBtn.Click += updateBtn_Click;
 			// 
 			// deleteBtn
 			// 
-			deleteBtn.Location = new Point(356, 512);
+			deleteBtn.Location = new Point(351, 512);
 			deleteBtn.Name = "deleteBtn";
 			deleteBtn.Size = new Size(75, 23);
 			deleteBtn.TabIndex = 10;
 			deleteBtn.Text = "삭제";
 			deleteBtn.UseVisualStyleBackColor = true;
-			// 
-			// Id
-			// 
-			Id.DataPropertyName = "Id";
-			Id.HeaderText = "Id";
-			Id.Name = "Id";
-			// 
-			// Content
-			// 
-			Content.DataPropertyName = "Content";
-			Content.HeaderText = "Content";
-			Content.Name = "Content";
-			// 
-			// StartDate
-			// 
-			StartDate.DataPropertyName = "StartDate";
-			StartDate.HeaderText = "StartDate";
-			StartDate.Name = "StartDate";
-			// 
-			// EndDate
-			// 
-			EndDate.DataPropertyName = "EndDate";
-			EndDate.HeaderText = "EndDate";
-			EndDate.Name = "EndDate";
+			deleteBtn.Click += deleteBtn_Click;
 			// 
 			// Todo
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(443, 547);
+			ClientSize = new Size(438, 547);
 			Controls.Add(deleteBtn);
-			Controls.Add(selectBtn);
 			Controls.Add(updateBtn);
 			Controls.Add(saveBtn);
 			Controls.Add(contentTb);
@@ -203,7 +200,6 @@
 		private TextBox contentTb;
 		private Button saveBtn;
 		private Button updateBtn;
-		private Button selectBtn;
 		private Button deleteBtn;
 		private DataGridViewTextBoxColumn Id;
 		private DataGridViewTextBoxColumn Content;

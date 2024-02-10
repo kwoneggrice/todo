@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Todo.DBQuery;
 using Todo.Dialogs;
+using Todo.Models;
 
 namespace Todo
 {
@@ -52,12 +54,23 @@ namespace Todo
 
 		}
 
+		// 업데이트 버튼
 		private void updateBtn_Click(object sender, EventArgs e)
 		{
 			UpdateDialog updateDialog = new UpdateDialog();
-			updateDialog.Show();
+			DataGridViewRow row = todoDgv.SelectedRows[0];
+
+			updateDialog.Id = int.Parse(row.Cells[0].Value.ToString());
+			updateDialog.Content = row.Cells[1].Value.ToString();
+			updateDialog.StartDate = Convert.ToDateTime(row.Cells[2].Value.ToString());
+			updateDialog.EndDate = Convert.ToDateTime(row.Cells[3].Value.ToString());
+
+			updateDialog.ShowDialog();
+
+			todoDgv.DataSource = TodoQuery.Instance.SelectAllQuery();
 		}
 
+		// 삭제 버튼
 		private void deleteBtn_Click(object sender, EventArgs e)
 		{
 			DialogResult dr = MessageBox.Show("삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo);
