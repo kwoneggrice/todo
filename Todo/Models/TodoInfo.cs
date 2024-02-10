@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Todo.Models
 {
-	internal class Todo
+	internal class TodoInfo
 	{
 		[Key]
 		public int Id { get; set; }
 		[Required]
-		public string Content { get; set; }
+		public string? Content { get; set; }
 		[Required]
 		public DateTime StartDate { get; set; }
 		[Required]
