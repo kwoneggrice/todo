@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Todo.Models;
 
 namespace Todo.Contexts
 {
 	internal class TodoContext : DbContext
 	{
-        public DbSet<Todo> todos { get; set; }
+		public DbSet<TodoInfo> Todos { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
