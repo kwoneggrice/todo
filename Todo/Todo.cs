@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Todo.DBQuery;
+using Todo.Dialogs;
 
 namespace Todo
 {
@@ -40,13 +41,39 @@ namespace Todo
 				contentTb.Text = "";
 				startDateDtp.Value = DateTime.Now;
 				endDateDtp.Value = DateTime.Now;
+				todoDgv.DataSource = TodoQuery.Instance.SelectAllQuery();
+
 			}
 			else
 			{
-				MessageBox.Show("저장에 실패하셨습니다.", "저장 실패", MessageBoxButtons.OK);
+				MessageBox.Show("저장을 취소하셨습니다..", "저장 취소", MessageBoxButtons.OK);
 			}
 
 
+		}
+
+		private void updateBtn_Click(object sender, EventArgs e)
+		{
+			UpdateDialog updateDialog = new UpdateDialog();
+			updateDialog.Show();
+		}
+
+		private void deleteBtn_Click(object sender, EventArgs e)
+		{
+			DialogResult dr = MessageBox.Show("삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo);
+
+			if (dr == DialogResult.Yes)
+			{
+				DataGridViewRow row = todoDgv.SelectedRows[0];
+				int id = int.Parse(row.Cells[0].Value.ToString());
+
+				TodoQuery.Instance.DeleteQuery(id);
+				todoDgv.DataSource = TodoQuery.Instance.SelectAllQuery();
+			}
+			else
+			{
+				MessageBox.Show("삭제를 취소하셨습니다.", "삭제 취소", MessageBoxButtons.OK);
+			}
 		}
 	}
 }
